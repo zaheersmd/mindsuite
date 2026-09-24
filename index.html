@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16143A">
+<title>MindSuite Cybersecurity | From cyber risk to cyber resilience</title>
+<meta name="description" content="MindSuite Cybersecurity helps organizations continuously govern, identify, protect, detect, respond and recover across cloud, applications, identities, infrastructure and data.">
+<meta name="keywords" content="cybersecurity, cyber resilience, MDR, SOC, vCISO, cloud security, application security, DevSecOps, GRC, incident response, ransomware resilience">
+<meta property="og:title" content="MindSuite Cybersecurity | From cyber risk to cyber resilience">
+<meta property="og:description" content="One end-to-end cybersecurity practice for governance, risk, protection, detection, response and recovery.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Brand, sampled from the MindSuite mark */
+  --cyan:#52CCEE; --indigo:#5A53A3; --orchid:#D88BBC;
+  /* Derived */
+  --ink:#16143A; --ink-2:#1F1C4D; --ink-3:#0F0D2A;
+  --paper:#F6F5FB; --white:#FFFFFF;
+  --text:#1C1A3D; --muted:#5E5B7A; --line:#E3E1EF;
+  --on-dark:#CFCDE8; --on-dark-2:#9D9AC4; --line-dark:rgba(255,255,255,.12);
+  --indigo-soft:#ECEBF7; --cyan-soft:#E3F6FC; --orchid-soft:#F8EAF3;
+  --font:"Schibsted Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --max:1200px;
+  /* The mark's signature: soft corners, one sharp corner where the planes meet */
+  --shape:22px 22px 22px 0;
+  --shape-sm:12px 12px 12px 0;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:var(--font);font-size:17px;line-height:1.6;color:var(--text);background:var(--paper);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.025em;line-height:1.08}
+p{margin:0}
+.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:12px;top:-60px;background:#fff;color:var(--ink);padding:10px 14px;border-radius:8px;z-index:200;font-weight:600}
+.skip:focus{top:12px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:var(--shape-sm);font:600 15px/1 var(--font);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}
+.btn-cyan{background:var(--cyan);color:var(--ink)}
+.btn-cyan:hover{background:#7ADAF3}
+.btn-ghost{border-color:rgba(255,255,255,.35);color:#fff}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.btn-indigo{background:var(--indigo);color:#fff}
+.btn-indigo:hover{background:#4A4490}
+.btn-line{border-color:var(--line);color:var(--text);background:#fff}
+.btn-line:hover{border-color:var(--indigo);color:var(--indigo)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(22,20,58,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-dark);padding-top:env(safe-area-inset-top,0px)}
+.nav-in{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo img{height:34px;width:auto}
+.nav-links{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.nav-links a{display:block;padding:9px 14px;border-radius:10px;color:var(--on-dark);font-size:15px;font-weight:500;text-decoration:none}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.menu-btn{display:none;background:none;border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:10px;padding:9px 12px;font:600 14px var(--font);cursor:pointer}
+
+/* Hero */
+.hero{background:var(--ink);color:#fff;overflow:hidden;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;padding:96px 0 72px}
+.hero h1{font-size:clamp(44px,6vw,84px);font-weight:800;letter-spacing:-.045em;line-height:.96}
+.hero h1 .l2{display:block;color:var(--on-dark-2);font-weight:500}
+.hero-lede{margin-top:28px;font-size:19px;line-height:1.55;color:var(--on-dark);max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero-foot{border-top:1px solid var(--line-dark);padding:22px 0 26px;color:var(--on-dark-2);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 28px}
+.hero-foot strong{color:#fff;font-weight:600}
+
+/* Hero mark: the logo's three planes as the lifecycle */
+.planes-wrap{display:flex;flex-direction:column;align-items:center;gap:28px}
+.planes{position:relative;width:min(100%,440px);aspect-ratio:1/1.02}
+.plane{position:absolute;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .4s}
+.p-indigo{left:30%;top:0;width:70%;height:64%;background:linear-gradient(160deg,#6E5BA8,#54519F);border-radius:28px 28px 28px 0;opacity:.95;z-index:2}
+.p-cyan{left:0;top:12%;width:44%;height:48%;background:var(--cyan);border-radius:28px 0 0 28px;z-index:1}
+.p-orchid{left:30%;top:64%;width:36%;height:36%;background:var(--orchid);border-radius:0 0 0 999px;z-index:1}
+.planes.is-loaded .plane{transform:none}
+.planes:not(.is-loaded) .p-indigo{transform:translate(18px,-18px);opacity:0}
+.planes:not(.is-loaded) .p-cyan{transform:translateX(-28px);opacity:0}
+.planes:not(.is-loaded) .p-orchid{transform:translateY(28px);opacity:0}
+.planes[data-active] .plane{opacity:.22}
+.planes[data-active="indigo"] .p-indigo,.planes[data-active="cyan"] .p-cyan,.planes[data-active="orchid"] .p-orchid{opacity:1}
+.planes[data-active="indigo"] .p-indigo{transform:translate(10px,-10px)}
+.planes[data-active="cyan"] .p-cyan{transform:translateX(-14px);z-index:2}
+.planes[data-active="cyan"] .p-indigo{z-index:1}
+.planes[data-active="orchid"] .p-orchid{transform:translateY(14px)}
+.plane-caption{position:absolute;z-index:3;right:6%;top:9%;width:52%;color:#fff;font-size:14px;line-height:1.45;pointer-events:none}
+.plane-caption b{display:block;font-size:22px;letter-spacing:-.02em;margin-bottom:6px}
+.plane-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:460px}
+.plane-tab{display:inline-flex;align-items:center;gap:9px;background:transparent;border:1.5px solid var(--line-dark);color:var(--on-dark);border-radius:999px;padding:9px 15px;font:500 14px var(--font);cursor:pointer;transition:border-color .2s,color .2s,background-color .2s}
+.plane-tab i{width:11px;height:11px;border-radius:3px 3px 3px 0}
+.plane-tab[aria-pressed="true"],.plane-tab:hover{border-color:rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.05)}
+
+/* Sections */
+.sec{padding:112px 0}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+.sec-head h2{font-size:clamp(34px,4.4vw,56px);font-weight:700;letter-spacing:-.035em}
+.sec-head p{color:var(--muted);font-size:18px;max-width:32em}
+.sec-dark{background:var(--ink);color:#fff}
+.sec-dark .sec-head p{color:var(--on-dark)}
+.sec-white{background:#fff}
+
+/* Group tags (tie every service back to a plane of the mark) */
+.g{--g:var(--indigo);--gs:var(--indigo-soft)}
+.g-cyan{--g:var(--cyan);--gs:var(--cyan-soft)}
+.g-orchid{--g:var(--orchid);--gs:var(--orchid-soft)}
+.swatch{display:inline-block;width:12px;height:12px;border-radius:3px 3px 3px 0;background:var(--g);flex:none}
+
+/* Lifecycle */
+.life{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.life-group{background:#fff;border-radius:var(--shape);padding:30px}
+.life-group h3{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0;display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.fn + .fn{margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
+.fn h4{margin:0 0 6px;font-size:26px;letter-spacing:-.025em;font-weight:700}
+.fn p{color:var(--muted);font-size:15.5px}
+
+/* Services index */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--line);background:#fff;color:var(--text);border-radius:999px;padding:9px 16px;font:500 15px var(--font);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip:hover{border-color:var(--indigo)}
+.svc-list{display:grid;grid-template-columns:1fr 1fr;column-gap:48px;border-top:1px solid var(--line)}
+.svc{border-bottom:1px solid var(--line)}
+.svc[hidden]{display:none}
+.svc summary{list-style:none;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start;padding:24px 0;cursor:pointer}
+.svc summary::-webkit-details-marker{display:none}
+.svc summary .swatch{margin-top:9px}
+.svc h3{font-size:22px;letter-spacing:-.02em;margin-bottom:5px}
+.svc summary p{color:var(--muted);font-size:15.5px}
+.svc .plus{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);position:relative;flex:none;margin-top:2px;transition:transform .25s,border-color .2s}
+.svc .plus::before,.svc .plus::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--text);transform:translate(-50%,-50%)}
+.svc .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.svc[open] .plus{transform:rotate(45deg);border-color:var(--indigo)}
+.svc summary:hover .plus{border-color:var(--indigo)}
+.svc ul{margin:0 0 26px 28px;padding:18px 22px;list-style:none;background:var(--gs);border-radius:var(--shape-sm);display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:15px}
+.svc li{position:relative;padding-left:16px}
+.svc li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:2px 2px 2px 0;background:var(--g)}
+
+/* Outcomes */
+.outcomes{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.panel{background:var(--ink-2);border-radius:var(--shape);padding:34px;border:1px solid var(--line-dark)}
+.panel h3{font-size:26px;margin-bottom:12px}
+.panel p{color:var(--on-dark);font-size:16px}
+.frameworks{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;list-style:none;padding:0}
+.frameworks li{border:1px solid var(--line-dark);border-radius:999px;padding:7px 13px;font-size:14px;color:#fff}
+.panel small{display:block;margin-top:26px;color:var(--on-dark-2);font-size:13.5px;line-height:1.5}
+.measures{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line-dark)}
+.measure{padding:26px 26px 26px 0;border-bottom:1px solid var(--line-dark)}
+.measure:nth-child(even){padding-left:26px;padding-right:0;border-left:1px solid var(--line-dark)}
+.measure h3{font-size:20px;display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.measure p{color:var(--on-dark);font-size:15.5px}
+.measure .kpi{display:block;margin-top:12px;color:#fff;font-size:14px;font-weight:600}
+
+/* Packages */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.tier{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--shape);padding:34px}
+.tier-top{display:flex;gap:5px;margin-bottom:26px}
+.tier-top span{height:8px;flex:1;border-radius:4px 4px 4px 0;background:var(--line)}
+.tier h3{font-size:30px;letter-spacing:-.03em}
+.tier .sub{color:var(--muted);font-size:15.5px;margin-top:6px}
+.tier ul{list-style:none;padding:0;margin:26px 0 32px;flex:1}
+.tier li{padding:11px 0;border-top:1px solid var(--line);font-size:15.5px}
+.tier li.inherit{font-weight:600}
+.tier .btn{align-self:flex-start}
+.tier-feat{background:var(--ink);border-color:var(--ink);color:#fff}
+.tier-feat .sub{color:var(--on-dark)}
+.tier-feat li{border-color:var(--line-dark)}
+.tier-feat .tag{align-self:flex-start;margin-top:14px;font-size:13px;font-weight:600;color:var(--ink);background:var(--cyan);padding:5px 10px;border-radius:8px 8px 8px 0}
+
+/* Engagement journey (a true sequence, so it is numbered) */
+.journey{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(6,1fr);gap:0;counter-reset:step;position:relative}
+.journey li{position:relative;padding:0 22px 0 0;counter-increment:step}
+.journey li::before{content:counter(step);display:grid;place-items:center;width:44px;height:44px;border-radius:12px 12px 12px 0;background:var(--ink);color:#fff;font-weight:700;font-size:16px;position:relative;z-index:1;margin-bottom:22px}
+.journey li::after{content:"";position:absolute;left:44px;right:0;top:22px;height:1.5px;background:var(--line)}
+.journey li:last-child::after{display:none}
+.journey h3{font-size:22px;margin-bottom:8px}
+.journey p{color:var(--muted);font-size:15.5px}
+
+/* Contact */
+.contact{background:var(--ink);color:#fff}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.contact h2{font-size:clamp(38px,4.8vw,62px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.contact-lede{color:var(--on-dark);font-size:18px;margin-top:22px;max-width:28em}
+.contact-points{list-style:none;padding:0;margin:36px 0 0;display:grid;gap:14px}
+.contact-points li{display:flex;gap:12px;align-items:baseline;color:var(--on-dark);font-size:16px}
+.contact-points .swatch{transform:translateY(1px)}
+.form{background:#fff;color:var(--text);border-radius:var(--shape);padding:36px}
+.form h3{font-size:22px;margin-bottom:22px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);font:400 16px var(--font);color:var(--text)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--indigo);background:#fff;box-shadow:0 0 0 3px rgba(90,83,163,.18)}
+.field textarea{min-height:120px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-note{margin-top:14px;font-size:13.5px;color:var(--muted)}
+
+/* Footer */
+footer{background:var(--ink-3);color:var(--on-dark-2);padding:48px 0 calc(40px + env(safe-area-inset-bottom,0px));font-size:14px}
+.foot-in{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.foot-in img{height:30px;width:auto;margin-bottom:14px}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap}
+.foot-links a{text-decoration:none}
+.foot-links a:hover{color:#fff}
+
+/* Responsive */
+@media (max-width:1040px){
+  .hero-grid{grid-template-columns:1fr;gap:48px;padding:72px 0 56px}
+  .planes-wrap{align-items:flex-start}
+  .planes{width:min(100%,380px)}
+  .sec-head,.outcomes,.contact-grid{grid-template-columns:1fr}
+  .sec-head{gap:18px}
+  .life{grid-template-columns:1fr}
+  .journey{grid-template-columns:repeat(3,1fr);row-gap:44px}
+  .journey li:nth-child(3)::after{display:none}
+  .tiers{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .nav-links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;background:var(--ink);padding:10px 16px 18px;border-bottom:1px solid var(--line-dark)}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:13px 12px;font-size:17px}
+  .menu-btn{display:inline-block}
+  .svc-list{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  .wrap{width:min(var(--max),calc(100% - 32px))}
+  .sec{padding:76px 0}
+  .nav-right .btn{display:none}
+  .hero-lede{font-size:17px}
+  .measures{grid-template-columns:1fr}
+  .measure,.measure:nth-child(even){padding:22px 0;border-left:0}
+  .svc ul{grid-template-columns:1fr;margin-left:0}
+  .journey{grid-template-columns:1fr;row-gap:30px}
+  .journey li{padding:0 0 0 64px}
+  .journey li::before{position:absolute;left:0;top:0;margin:0}
+  .journey li::after{display:block;left:21px;right:auto;top:48px;bottom:-26px;width:1.5px;height:auto}
+  .journey li:nth-child(3)::after{display:block}
+  .journey li:last-child::after{display:none}
+  .two{grid-template-columns:1fr;gap:0}
+  .form,.panel,.tier,.life-group{padding:26px}
+  .plane-caption{font-size:13px}
+  .plane-caption b{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="MindSuite home"><img src="data:image/webp;base64,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" alt="MindSuite" width="159" height="34"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#lifecycle">Framework</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#outcomes">Outcomes</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#engage">How we work</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="btn btn-cyan" href="#contact">Assess my cyber risk</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="navLinks" id="menuBtn">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1><span style="white-space:nowrap">From cyber risk</span> <span class="l2">to cyber resilience.</span></h1>
+      <p class="hero-lede">MindSuite helps organizations continuously govern, identify, protect, detect, respond and recover across cloud, applications, identities, infrastructure and data.</p>
+      <div class="hero-actions">
+        <a class="btn btn-cyan" href="#contact">Start a risk assessment</a>
+        <a class="btn btn-ghost" href="#services">Explore services</a>
+      </div>
+    </div>
+
+    <div class="planes-wrap">
+      <div class="planes" id="planes" aria-hidden="true">
+        <div class="plane p-cyan"></div>
+        <div class="plane p-indigo"></div>
+        <div class="plane p-orchid"></div>
+        <div class="plane-caption" id="planeCaption"><b>One practice, three layers</b>Every service we run sits on one of these layers. Pick one to see what it covers.</div>
+      </div>
+      <div class="plane-tabs" role="group" aria-label="Security layers">
+        <button class="plane-tab g" data-plane="indigo" aria-pressed="false"><i class="swatch"></i>Govern &amp; identify</button>
+        <button class="plane-tab g g-cyan" data-plane="cyan" aria-pressed="false"><i class="swatch"></i>Protect &amp; detect</button>
+        <button class="plane-tab g g-orchid" data-plane="orchid" aria-pressed="false"><i class="swatch"></i>Respond &amp; recover</button>
+      </div>
+      <p class="sr-only" id="planeLive" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></p>
+    </div>
+  </div>
+  <div class="wrap hero-foot">
+    <span>Aligned with <strong>NIST CSF 2.0</strong></span>
+    <span><strong>ISO 27001</strong></span>
+    <span><strong>CIS Controls</strong></span>
+    <span><strong>MITRE ATT&amp;CK</strong></span>
+    <span><strong>CISA CPGs</strong></span>
+  </div>
+</section>
+
+<section class="sec" id="lifecycle">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Security across the full lifecycle.</h2>
+      <p>One integrated practice instead of disconnected security projects, built on the six functions of NIST CSF 2.0.</p>
+    </div>
+    <div class="life">
+      <article class="life-group g">
+        <h3><span class="swatch"></span>Govern &amp; identify</h3>
+        <div class="fn"><h4>Govern</h4><p>Board advisory, vCISO, policies, risk and security strategy.</p></div>
+        <div class="fn"><h4>Identify</h4><p>Assets, attack surface, vulnerabilities, data and third-party risk.</p></div>
+      </article>
+      <article class="life-group g g-cyan">
+        <h3><span class="swatch"></span>Protect &amp; detect</h3>
+        <div class="fn"><h4>Protect</h4><p>Cloud, identity, endpoint, application and data security.</p></div>
+        <div class="fn"><h4>Detect</h4><p>SOC, MDR, SIEM, XDR, threat intelligence and hunting.</p></div>
+      </article>
+      <article class="life-group g g-orchid">
+        <h3><span class="swatch"></span>Respond &amp; recover</h3>
+        <div class="fn"><h4>Respond</h4><p>Incident response, containment, forensics and recovery actions.</p></div>
+        <div class="fn"><h4>Recover</h4><p>Ransomware resilience, DR, backup validation and continuity.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Twelve capabilities, built around business risk.</h2>
+      <p>From strategic advisory to hands-on engineering and managed operations. Choose the capabilities that match your risk profile.</p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter services by layer">
+      <button class="chip" data-filter="all" aria-pressed="true">All services</button>
+      <button class="chip g" data-filter="indigo" aria-pressed="false"><span class="swatch"></span>Govern &amp; identify</button>
+      <button class="chip g g-cyan" data-filter="cyan" aria-pressed="false"><span class="swatch"></span>Protect &amp; detect</button>
+      <button class="chip g g-orchid" data-filter="orchid" aria-pressed="false"><span class="swatch"></span>Respond &amp; recover</button>
+    </div>
+
+    <div class="svc-list" id="svcList">
+      <details class="svc g" data-group="indigo"><summary><span class="swatch"></span><div><h3>Cyber governance &amp; vCISO</h3><p>Executive-level security leadership without the overhead of a full-time CISO.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>Security strategy &amp; roadmap</li><li>Risk register &amp; board reporting</li><li>Policies, standards &amp; governance</li><li>Security steering committee</li></ul></details>
+      <details class="svc g" data-group="indigo"><summary><span class="swatch"></span><div><h3>Cyber risk &amp; exposure</h3><p>A defensible view of what can be attacked, how exposed it is and what matters most.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>Cyber maturity assessment</li><li>Attack surface &amp; asset discovery</li><li>Vulnerability management</li><li>Third-party risk</li></ul></details>
+      <details class="svc g" data-group="indigo"><summary><span class="swatch"></span><div><h3>GRC &amp; compliance</h3><p>Turn compliance obligations into an operating system for continuous improvement.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>ISO 27001 &amp; SOC 2 readiness</li><li>PCI DSS &amp; privacy programs</li><li>Evidence &amp; control automation</li><li>Internal audit support</li></ul></details>
+      <details class="svc g" data-group="indigo"><summary><span class="swatch"></span><div><h3>AI security</h3><p>Govern emerging AI risks while enabling responsible adoption of GenAI and AI workloads.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>AI risk assessment</li><li>Shadow AI &amp; data leakage</li><li>Prompt injection &amp; AI red teaming</li><li>AI governance</li></ul></details>
+      <details class="svc g g-cyan" data-group="cyan"><summary><span class="swatch"></span><div><h3>Cloud &amp; infrastructure security</h3><p>Security engineering across AWS, Azure, GCP, OCI, containers and Kubernetes.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>CSPM, CIEM &amp; workload security</li><li>Cloud IAM &amp; network controls</li><li>Kubernetes &amp; container security</li><li>Logging, secrets &amp; encryption</li></ul></details>
+      <details class="svc g g-cyan" data-group="cyan"><summary><span class="swatch"></span><div><h3>Application &amp; DevSecOps</h3><p>Move security into the delivery lifecycle instead of waiting for production.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>Threat modeling &amp; architecture review</li><li>SAST, DAST, SCA &amp; IaC security</li><li>API &amp; mobile security</li><li>VAPT and red-team exercises</li></ul></details>
+      <details class="svc g g-cyan" data-group="cyan"><summary><span class="swatch"></span><div><h3>Identity &amp; data security</h3><p>Reduce identity-driven compromise and protect sensitive business information.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>IAM, SSO, MFA &amp; RBAC</li><li>PAM &amp; privileged access</li><li>Data protection &amp; encryption</li><li>Secrets and machine identities</li></ul></details>
+      <details class="svc g g-cyan" data-group="cyan"><summary><span class="swatch"></span><div><h3>API &amp; integration security</h3><p>Protect the layer that connects customers, partners, applications and data.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>API discovery &amp; inventory</li><li>Authentication &amp; authorization</li><li>Abuse, BOLA &amp; data exposure testing</li><li>Runtime API monitoring</li></ul></details>
+      <details class="svc g g-cyan" data-group="cyan"><summary><span class="swatch"></span><div><h3>Managed detection &amp; response</h3><p>24×7 security operations focused on detection, investigation and response.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>SIEM, XDR &amp; MDR</li><li>Threat intelligence &amp; hunting</li><li>Detection engineering</li><li>Incident escalation &amp; containment</li></ul></details>
+      <details class="svc g g-orchid" data-group="orchid"><summary><span class="swatch"></span><div><h3>Incident response &amp; forensics</h3><p>Preparedness and expert response when a security event becomes a business incident.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>IR retainer &amp; playbooks</li><li>Digital forensics</li><li>Root-cause analysis</li><li>Executive tabletop exercises</li></ul></details>
+      <details class="svc g g-orchid" data-group="orchid"><summary><span class="swatch"></span><div><h3>Ransomware resilience</h3><p>Prepare to prevent, contain and recover from destructive attacks.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>Immutable backup strategy</li><li>Recovery validation</li><li>Segmentation &amp; hardening</li><li>Ransomware simulations</li></ul></details>
+      <details class="svc g g-orchid" data-group="orchid"><summary><span class="swatch"></span><div><h3>Business continuity &amp; DR</h3><p>Make recovery measurable, tested and aligned to business-critical services.</p></div><span class="plus" aria-hidden="true"></span></summary>
+        <ul><li>BCP &amp; DR assessment</li><li>Recovery objectives &amp; architecture</li><li>Backup security</li><li>Recovery exercises</li></ul></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-dark" id="outcomes">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Measure security by reduced risk, not tools deployed.</h2>
+      <p>Executive metrics and operational KPIs show whether controls are actually improving resilience.</p>
+    </div>
+    <div class="outcomes">
+      <aside class="panel">
+        <h3>Continuous cyber risk dashboard</h3>
+        <p>Technical signals brought into one business-readable view for executives, technology leaders and security teams.</p>
+        <ul class="frameworks"><li>NIST CSF 2.0</li><li>ISO 27001</li><li>CIS Controls</li><li>MITRE ATT&amp;CK</li><li>CISA CPGs</li></ul>
+        <small>Targets are agreed with each customer as specific SLAs.</small>
+      </aside>
+      <div class="measures">
+        <div class="measure g"><h3><span class="swatch"></span>Asset visibility</h3><p>Critical assets discovered and continuously monitored.</p><span class="kpi">Coverage of critical assets</span></div>
+        <div class="measure g"><h3><span class="swatch"></span>Vulnerability risk</h3><p>Critical findings prioritized by business impact and exposure.</p><span class="kpi">Critical findings open past SLA</span></div>
+        <div class="measure g g-cyan"><h3><span class="swatch"></span>Identity coverage</h3><p>Privileged identities protected with strong authentication and controls.</p><span class="kpi">Privileged accounts with MFA</span></div>
+        <div class="measure g g-cyan"><h3><span class="swatch"></span>Detection</h3><p>Alert quality and investigation of every critical event.</p><span class="kpi">Mean time to detect (MTTD)</span></div>
+        <div class="measure g g-orchid"><h3><span class="swatch"></span>Response</h3><p>Containment speed and incident playbook performance.</p><span class="kpi">Mean time to respond (MTTR)</span></div>
+        <div class="measure g g-orchid"><h3><span class="swatch"></span>Recovery</h3><p>Backup integrity, recovery readiness and exercise results.</p><span class="kpi">Tested recovery time</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="packages">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Start where you are. Scale as risk evolves.</h2>
+      <p>Three engagement models that build on each other, so you can combine services around your needs without starting over.</p>
+    </div>
+    <div class="tiers">
+      <article class="tier">
+        <div class="tier-top" aria-hidden="true"><span style="background:var(--indigo)"></span><span></span><span></span></div>
+        <h3>Foundation</h3><p class="sub">Cybersecurity essentials</p>
+        <ul><li>Cyber risk &amp; maturity assessment</li><li>Vulnerability management</li><li>Identity and endpoint baseline</li><li>Security awareness</li><li>Monthly executive report</li></ul>
+        <a class="btn btn-line" href="#contact" data-need="Cyber Risk Assessment">Discuss Foundation</a>
+      </article>
+      <article class="tier tier-feat">
+        <div class="tier-top" aria-hidden="true"><span style="background:var(--indigo)"></span><span style="background:var(--cyan)"></span><span style="background:rgba(255,255,255,.14)"></span></div>
+        <h3>Managed Defense</h3><p class="sub">Managed detection &amp; response</p>
+        <span class="tag">Full managed model</span>
+        <ul><li class="inherit">Everything in Foundation</li><li>24×7 SOC and MDR</li><li>SIEM and XDR integration</li><li>Cloud and application security</li><li>Incident response readiness</li></ul>
+        <a class="btn btn-cyan" href="#contact" data-need="Managed Detection & Response">Discuss Managed Defense</a>
+      </article>
+      <article class="tier">
+        <div class="tier-top" aria-hidden="true"><span style="background:var(--indigo)"></span><span style="background:var(--cyan)"></span><span style="background:var(--orchid)"></span></div>
+        <h3>Cyber Resilience</h3><p class="sub">Enterprise security partnership</p>
+        <ul><li class="inherit">Everything in Managed Defense</li><li>vCISO and board advisory</li><li>Red team and threat hunting</li><li>GRC and continuous compliance</li><li>Ransomware &amp; DR resilience</li></ul>
+        <a class="btn btn-line" href="#contact" data-need="vCISO / Governance">Discuss Cyber Resilience</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white" id="engage">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How an engagement runs.</h2>
+      <p>A practical path from current-state visibility to continuously managed cyber resilience.</p>
+    </div>
+    <ol class="journey">
+      <li><h3>Assess</h3><p>Understand assets, exposure, maturity and business-critical risks.</p></li>
+      <li><h3>Prioritize</h3><p>Turn findings into a risk-based 90, 180 and 365-day roadmap.</p></li>
+      <li><h3>Transform</h3><p>Engineer controls across cloud, apps, identity, data and infrastructure.</p></li>
+      <li><h3>Operate</h3><p>Continuously monitor, detect, investigate and respond.</p></li>
+      <li><h3>Improve</h3><p>Measure outcomes, test resilience and raise maturity.</p></li>
+      <li><h3>Report</h3><p>Give executives a concise, evidence-based view of cyber risk.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Know your risk before an attacker does.</h2>
+      <p class="contact-lede">Request a discovery session. We'll identify the highest-value opportunities across governance, cloud, applications, identities, detection and recovery.</p>
+      <ul class="contact-points">
+        <li class="g"><span class="swatch"></span>A current-state view of your exposure</li>
+        <li class="g g-cyan"><span class="swatch"></span>Your most urgent control gaps, ranked</li>
+        <li class="g g-orchid"><span class="swatch"></span>A first draft of your resilience roadmap</li>
+      </ul>
+    </div>
+    <form class="form" id="contactForm" novalidate>
+      <h3>Request a discovery session</h3>
+      <div class="two">
+        <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" required></div>
+      </div>
+      <div class="two">
+        <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="interest">Primary need</label>
+          <select id="interest" name="interest">
+            <option>Cyber Risk Assessment</option><option>Managed Detection &amp; Response</option><option>Cloud Security</option><option>Application Security</option><option>vCISO / Governance</option><option>GRC / Compliance</option><option>Incident Response</option><option>Ransomware Resilience</option><option>AI Security</option>
+          </select></div>
+      </div>
+      <div class="field"><label for="message">What are you trying to improve?</label><textarea id="message" name="message" placeholder="Your environment, current challenge or security goal."></textarea></div>
+      <button class="btn btn-indigo" type="submit">Request discovery session</button>
+      <p class="form-note" id="formNote">Submitting opens your email app with the request ready to send.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div><img src="data:image/webp;base64,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" alt="MindSuite" width="140" height="30"><div>From cyber risk to cyber resilience.</div></div>
+    <nav class="foot-links" aria-label="Footer"><a href="#services">Services</a><a href="#packages">Packages</a><a href="#contact">Contact</a><span>© 2026 MindSuite. All rights reserved.</span></nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Hero planes: one entrance, then respond to the visitor's choice
+  var planes=document.getElementById('planes');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){planes.classList.add('is-loaded')})});
+  var cap=document.getElementById('planeCaption'), live=document.getElementById('planeLive');
+  var copy={
+    indigo:['Govern & identify','Strategy, vCISO, risk and a clear inventory of what you need to defend.'],
+    cyan:['Protect & detect','Hardened cloud, apps and identities, watched 24×7 by our SOC.'],
+    orchid:['Respond & recover','Contain incidents fast and bring critical services back, tested.']
+  };
+  var def=cap.innerHTML;
+  document.querySelectorAll('.plane-tab').forEach(function(b){
+    b.addEventListener('click',function(){
+      var k=b.dataset.plane, on=planes.dataset.active===k;
+      document.querySelectorAll('.plane-tab').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      if(on){delete planes.dataset.active;cap.innerHTML=def;live.textContent='';return}
+      planes.dataset.active=k;b.setAttribute('aria-pressed','true');
+      cap.innerHTML='<b>'+copy[k][0].replace('&','&amp;')+'</b>'+copy[k][1];
+      live.textContent=copy[k][0]+': '+copy[k][1];
+    });
+  });
+
+  // Service filter
+  var chips=document.querySelectorAll('.chip'), svcs=document.querySelectorAll('.svc');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===c))});
+      var f=c.dataset.filter;
+      svcs.forEach(function(s){s.hidden=!(f==='all'||s.dataset.group===f)});
+    });
+  });
+
+  // Mobile menu
+  var mb=document.getElementById('menuBtn'), nl=document.getElementById('navLinks');
+  mb.addEventListener('click',function(){var o=nl.classList.toggle('open');mb.setAttribute('aria-expanded',String(o));mb.textContent=o?'Close':'Menu'});
+  nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open');mb.setAttribute('aria-expanded','false');mb.textContent='Menu'})});
+
+  // Package buttons preselect the matching need
+  document.querySelectorAll('[data-need]').forEach(function(a){
+    a.addEventListener('click',function(){document.getElementById('interest').value=a.dataset.need});
+  });
+
+  // Contact form: prepare an email
+  var form=document.getElementById('contactForm'), note=document.getElementById('formNote');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var bad=[].slice.call(form.querySelectorAll('[required]')).filter(function(i){return !i.checkValidity()});
+    if(bad.length){
+      note.textContent='Add your '+bad.map(function(i){return form.querySelector('label[for="'+i.id+'"]').textContent.toLowerCase()}).join(', ')+' to continue.';
+      note.style.color='#A23E78';bad[0].focus();return;
+    }
+    note.textContent='Opening your email app with the request ready to send.';note.style.color='';
+    var d=new FormData(form);
+    var subject='MindSuite discovery request: '+d.get('company');
+    var body='Name: '+d.get('name')+'\nCompany: '+d.get('company')+'\nWork email: '+d.get('email')+'\nPrimary need: '+d.get('interest')+'\n\nWhat we want to improve:\n'+d.get('message');
+    window.location.href='mailto:?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  });
+})();
+</script>
+</body>
+</html>
